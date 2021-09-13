@@ -1,0 +1,25 @@
+{
+	"name": "px4",
+	"build": {
+		"dockerfile": "Dockerfile",
+	},
+
+	"settings": {},
+	"runArgs": [
+		"--runtime=nvidia"
+	],
+	"mounts": [
+		"source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,ro=true",
+	],
+	"extensions": [
+	],
+
+	"containerUser": "vscode",
+	"containerEnv": {
+		"LOCAL_USER_ID": "${localEnv:UID}",
+		"DISPLAY": "${localEnv:DISPLAY}",
+		// "ROS_MASTER_URI": "http://172.17.0.2:11311",
+		// "ROS_IP": "172.17.0.2",
+	},
+	"postCreateCommand": "echo 'source /opt/ros/foxy/setup.zsh ' >> $HOME/.zshrc",
+}
